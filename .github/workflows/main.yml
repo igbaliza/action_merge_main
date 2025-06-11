@@ -23,4 +23,5 @@ jobs:
       - name: Executar deploy
         run: |
           echo "Executando deploy com base na branch release..."
+          exit 1
           # seu script de deploy aqui
