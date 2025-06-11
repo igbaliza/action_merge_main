@@ -1,16 +1,26 @@
 
-name: Merge após Deploy
+name: Deploy antes do Merge
 
 on:
-  repository_dispatch:
-    types: [merge-release]
-
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 jobs:
-  merge:
+  deploy:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://seu-sistema.com/deploy-status
+
     steps:
-      - name: Merge PR
+      - name: Checkout da branch release
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Executar deploy
         run: |
-          gh pr merge ${{ github.event.client_payload.pr_number }} --merge
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "Executando deploy com base na branch release..."
+          # seu script de deploy aqui
