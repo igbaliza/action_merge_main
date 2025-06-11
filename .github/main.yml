@@ -1,0 +1,16 @@
+
+name: Merge após Deploy
+
+on:
+  repository_dispatch:
+    types: [merge-release]
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge PR
+        run: |
+          gh pr merge ${{ github.event.client_payload.pr_number }} --merge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
