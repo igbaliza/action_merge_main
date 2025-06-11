@@ -15,11 +15,11 @@ jobs:
       url: https://seu-sistema.com/deploy-status
 
   steps:
-  - name: Checkout da branch release
-    uses: actions/checkout@v3
-    with:
-      ref: ${{ github.event.pull_request.head.ref }}
+    - name: Checkout da branch release
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
 
-  - name: Executar deploy
-    run: |
-      echo "Executando deploy com base na branch release..."
+    - name: Executar deploy
+      run: |
+        echo "Executando deploy com base na branch release..."
