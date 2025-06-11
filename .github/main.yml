@@ -1,6 +1,6 @@
 
 name: Merge após Deploy
-
+ 
 on:
   repository_dispatch:
     types: [merge-release]
