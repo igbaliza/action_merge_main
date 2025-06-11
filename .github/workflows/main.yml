@@ -1,26 +1,26 @@
-
 name: Deploy antes do Merge
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
 jobs:
-  deploy:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://seu-sistema.com/deploy-status
+  deploy:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://seu-sistema.com/deploy-status
 
-    steps:
-      - name: Checkout da branch release
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
+    steps:
+      - name: Checkout da branch release
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Executar deploy
-        run: |
-          echo "Executando deploy com base na branch release..."
-          # seu script de deploy aqui
+      - name: Executar deploy
+        run: |
+          echo "Executando deploy com base na branch release..."
+          # seu script de deploy aqui
