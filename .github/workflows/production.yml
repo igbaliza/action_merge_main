@@ -3,13 +3,14 @@ on:
     types:
     - closed
     branches:
-    - 'main'
+    - 'release**'
 
 jobs:
-  validate-branch-origin:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate commit message
-        if: ${{ !startsWith(github.head_href, 'release/') }}
-        run: echo "Pull request to mais branch must come from 'release' branches!" |
-          exit 1
+      - name: Executar deploy
+        run: |
+          echo "Executando deploy com base na branch ${{ github.event.pull_request.head.ref }}"
+          # seu script de deploy aqui
+          # simule erro com: exit 1
