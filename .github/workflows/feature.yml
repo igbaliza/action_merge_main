@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      - 'feature**'
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Executar deploy
+        run: |
+          echo "Executando deploy com base na branch ${{ github.event.pull_request.head.ref }}"
+          # seu script de deploy aqui
+          # simule erro com: exit 1
