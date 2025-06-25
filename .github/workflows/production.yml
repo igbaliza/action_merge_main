@@ -1,0 +1,15 @@
+on:
+  pull_request:
+    types:
+    - closed
+    branches:
+    - 'main'
+
+jobs:
+  validate-branch-origin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate commit message
+        if: ${{ !startsWith(github.head_href, 'release/') }}
+        run: echo "Pull request to mais branch must come from 'release' branches!" |
+          exit 1
